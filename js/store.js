@@ -89,6 +89,15 @@
                 visit: null,
                 updatedAt: 0
             },
+            /* паспорт объекта: что за помещение, проблема, бюджет и материалы клиента */
+            objectPassport: {
+                objectType: 'Квартира',
+                rooms: 'Ванная комната — 6 м²\nКухня — 10 м²',
+                problem: 'Нужен ремонт ванной: старая плитка демонтирована, требуется новая облицовка и установка смесителя.',
+                budget: 1200,
+                materials: [],          /* {productId, name, category, price, image, qty, status} */
+                updatedAt: 0
+            },
             /* сметы, которые мастера собирают для клиента */
             proposals: [],
             updatedAt: 0
@@ -119,6 +128,8 @@
         parsed.proposals = parsed.proposals || [];
         parsed.clientCart = Object.assign({}, base.clientCart, parsed.clientCart || {});
         if (!Array.isArray(parsed.clientCart.items)) parsed.clientCart.items = [];
+        parsed.objectPassport = Object.assign({}, base.objectPassport, parsed.objectPassport || {});
+        if (!Array.isArray(parsed.objectPassport.materials)) parsed.objectPassport.materials = [];
         return parsed;
     }
 
@@ -395,6 +406,56 @@
                 if (!chat) return;
                 if (role === 'client') chat.clientSeen = Date.now();
                 else chat.masterSeen = Date.now();
+            });
+        },
+
+        /* --- паспорт объекта --------------------------------------------- */
+
+        saveObjectPassport: function (details) {
+            return commit(function (current) {
+                var passport = current.objectPassport;
+                passport.objectType = String(details.objectType || '').trim() || 'Квартира';
+                passport.rooms = String(details.rooms || '').trim();
+                passport.problem = String(details.problem || '').trim();
+                passport.budget = Math.max(0, Number(details.budget) || 0);
+                passport.updatedAt = Date.now();
+                return { ok: true, passport: passport };
+            });
+        },
+
+        addPassportMaterial: function (productId, qty) {
+            return commit(function (current) {
+                var product = productById(productId);
+                if (!product) return { ok: false, reason: 'no-product' };
+                var amount = Math.max(1, Math.min(99, Number(qty) || 1));
+                var existing = current.objectPassport.materials.filter(function (item) {
+                    return item.productId === product.id;
+                })[0];
+                if (existing) {
+                    existing.qty += amount;
+                } else {
+                    current.objectPassport.materials.push({
+                        productId: product.id,
+                        name: product.name,
+                        category: product.category,
+                        price: product.price,
+                        image: product.image,
+                        qty: amount,
+                        status: 'Нужно заказать'
+                    });
+                }
+                current.objectPassport.updatedAt = Date.now();
+                return { ok: true };
+            });
+        },
+
+        removePassportMaterial: function (productId) {
+            return commit(function (current) {
+                current.objectPassport.materials = current.objectPassport.materials.filter(function (item) {
+                    return item.productId !== Number(productId);
+                });
+                current.objectPassport.updatedAt = Date.now();
+                return { ok: true };
             });
         },
 

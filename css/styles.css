@@ -739,11 +739,11 @@ small { font-size: 12px; }
 /* очень узкие экраны (iPhone SE и подобные) */
 @media (max-width: 380px) {
     .header__inner { gap: 8px; padding: 9px 12px; }
-    /* логотип и корзина в одной строке, переключатель версий — под ними */
+    /* логотип, переключатель версий и корзина в одной строке */
     .header-actions { display: contents; }
     .logo { order: 1; }
-    .cart-button { order: 2; margin-left: auto; }
-    .role-switch { order: 3; align-self: flex-start; }
+    .role-switch { order: 2; align-self: center; }
+    .cart-button { order: 3; margin-left: auto; }
     .search { order: 4; }
     .logo img { height: 26px; }
     .role-switch { padding: 2px; }

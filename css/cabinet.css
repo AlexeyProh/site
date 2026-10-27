@@ -53,6 +53,68 @@
 .empty--pad { padding: 22px 14px; }
 .is-flashing { outline: 2px solid var(--orange); outline-offset: 3px; transition: outline-color .2s; }
 
+/* --------------------------------------------------------- паспорт объекта */
+.panel__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.passport__toggle { display: none; }
+.passport__bar { display: none; }
+.passport__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.passport__stat { padding: 8px 10px; border-radius: var(--radius-sm); background: var(--purple-soft); }
+.passport__stat span { display: block; color: var(--muted); font-size: 10.5px; }
+.passport__stat b { display: block; margin-top: 2px; font-size: 13px; }
+
+.passport-form { display: grid; gap: 12px; }
+.passport-form label { display: grid; gap: 6px; }
+.passport-form label > span { color: var(--muted); font-size: 11px; font-weight: 700; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.textarea {
+    width: 100%;
+    min-height: 78px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    resize: vertical;
+}
+.textarea:focus { outline: 0; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(248, 151, 40, .16); }
+
+.passport-materials { display: grid; gap: 8px; margin-top: 18px; }
+.passport-materials h3 { margin: 0 0 2px; font-size: 14px; }
+.passport-materials__list { display: grid; gap: 8px; }
+.passport-material, .master-material {
+    display: grid;
+    gap: 8px;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: #fff;
+}
+.passport-material { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.passport-material b, .master-material b { display: block; font-size: 13px; }
+.passport-material small, .master-material small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+.passport-add { display: grid; grid-template-columns: minmax(0, 1fr) 70px auto; gap: 6px; align-items: center; margin-top: 4px; }
+.passport-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.passport-summary > div { padding: 10px 12px; border-radius: var(--radius-sm); background: var(--purple-soft); }
+.passport-summary span, .passport-detail > b { display: block; color: var(--muted); font-size: 11px; }
+.passport-summary b { display: block; margin-top: 3px; font-size: 14px; }
+.passport-detail { margin-top: 14px; }
+.passport-detail p { margin: 4px 0 0; font-size: 13px; line-height: 1.5; white-space: pre-line; }
+
+.master-material { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.master-material .material-alternatives, .master-material > .note { grid-column: 1 / -1; }
+.material-alternatives {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+}
+.material-alternatives span { color: var(--muted); font-size: 11px; }
+.material-alternatives .link-button { font-size: 11px; text-align: left; }
+
 /* --------------------------------------------------------- демо-подсказка */
 .demo-bar {
     display: flex;
@@ -545,19 +607,21 @@
     .cabinet-head { grid-template-columns: 1fr; align-items: start; }
     .product-grid--dense { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-    /* на узких экранах панели идут в один поток: чат → мастер → корзина → каталог */
+    /* на узких экранах панели идут в один поток: паспорт → чат → мастер → корзина → каталог */
     .cabinet__main, .cabinet__side { display: contents; }
-    body[data-page="client"] #chat { order: 1; }
-    body[data-page="client"] #master-panel { order: 2; }
-    body[data-page="client"] #cart { order: 3; }
-    body[data-page="client"] #catalog { order: 4; }
-    body[data-page="client"] #order { order: 5; }
+    body[data-page="client"] #object-passport { order: 1; }
+    body[data-page="client"] #chat { order: 2; }
+    body[data-page="client"] #master-panel { order: 3; }
+    body[data-page="client"] #cart { order: 4; }
+    body[data-page="client"] #catalog { order: 5; }
+    body[data-page="client"] #order { order: 6; }
 
-    body[data-page="master"] #chat { order: 1; }
-    body[data-page="master"] #builder { order: 2; }
-    body[data-page="master"] #catalog { order: 3; }
-    body[data-page="master"] #live-cart { order: 4; }
-    body[data-page="master"] #orders { order: 5; }
+    body[data-page="master"] #object-passport { order: 1; }
+    body[data-page="master"] #chat { order: 2; }
+    body[data-page="master"] #builder { order: 3; }
+    body[data-page="master"] #catalog { order: 4; }
+    body[data-page="master"] #live-cart { order: 5; }
+    body[data-page="master"] #orders { order: 6; }
 }
 @media (max-width: 850px) {
     .cabinet-head { padding: 18px 0 14px; }
@@ -569,6 +633,24 @@
     .cabinet-head p { font-size: 13px; line-height: 1.55; }
 }
 @media (max-width: 560px) {
+    /* паспорт на телефоне — свёрнутая карточка-аккордеон */
+    .passport__toggle { display: inline; }
+    .passport__bar { display: block; margin-bottom: 4px; }
+    .passport__body { display: none; }
+    .passport.is-open .passport__body { display: block; }
+    .passport.is-open .passport__bar { display: none; }
+    .panel__tools { width: 100%; justify-content: space-between; }
+    .passport-form { gap: 10px; }
+    .form-grid { grid-template-columns: 1fr; gap: 10px; }
+    .textarea { min-height: 66px; font-size: 12.5px; padding: 9px 11px; }
+    .passport-add { grid-template-columns: minmax(0, 1fr) 64px; }
+    .passport-add .button { grid-column: 1 / -1; }
+    .passport-summary { gap: 8px; }
+    .passport-detail { margin-top: 12px; }
+    .master-material { grid-template-columns: 1fr; }
+    .master-material .button { width: 100%; }
+    .passport-material b, .master-material b { font-size: 12.5px; }
+
     .product-grid--dense { grid-template-columns: 1fr 1fr; gap: 10px; }
     .cabinet { padding: 4px 0 36px; gap: 14px; }
     .cabinet-head h1 { font-size: 26px; }

@@ -39,6 +39,21 @@
 
     <div class="cabinet" style="padding-top:18px">
       <section class="cabinet__main">
+        <article class="panel passport" id="object-passport">
+          <div class="panel__head">
+            <div>
+              <h2>Паспорт объекта клиента</h2>
+              <p class="panel__hint">Из чего состоит объект, что нужно сделать, бюджет и материалы — их можно сразу взять в смету.</p>
+            </div>
+            <div class="panel__tools">
+              <span class="chip chip--yellow" id="master-passport-state">для подбора сметы</span>
+              <button class="link-button passport__toggle" type="button" data-passport-toggle aria-expanded="false">показать</button>
+            </div>
+          </div>
+          <div class="passport__bar" id="master-passport-bar"></div>
+          <div class="passport__body" id="master-passport-body"></div>
+        </article>
+
         <article class="panel" id="chat">
           <div class="panel__head">
             <div>
