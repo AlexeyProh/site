@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кабинет мастера — ОМА PRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cabinet.css">
+  <script defer src="js/data.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/master.js"></script>
+</head>
+<body data-page="master">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="cabinet-head">
+      <div>
+        <span class="eyebrow">Версия мастера · PRO</span>
+        <h1>Кабинет мастера</h1>
+        <p>Общайтесь с клиентом, собирайте смету из каталога и делитесь корзиной. Правки клиента и оплата появляются здесь мгновенно.</p>
+      </div>
+      <div class="cabinet-head__side">
+        <div class="statusbar" id="statusbar"></div>
+      </div>
+    </section>
+
+    <div class="demo-bar">
+      <span><b>Демо:</b> откройте <a href="client.html" target="_blank" rel="noopener">версию клиента</a> в соседней вкладке — смета, чат и живая корзина синхронизируются в реальном времени.</span>
+      <span class="demo-bar__short"><b>Демо:</b> откройте <a href="client.html" target="_blank" rel="noopener">версию клиента</a> в соседней вкладке — данные синхронизируются.</span>
+      <button class="link-button" id="demo-reset" type="button">Сбросить демо-данные</button>
+    </div>
+
+    <div class="master-bar" id="master-bar"></div>
+
+    <div class="cabinet" style="padding-top:18px">
+      <section class="cabinet__main">
+        <article class="panel" id="chat">
+          <div class="panel__head">
+            <div>
+              <h2>Клиент и чат</h2>
+              <p class="panel__hint">Клиент выбрал вас. Уточните задачу и отправьте корзину с материалами.</p>
+            </div>
+            <span class="chip" id="chat-chip">нет диалога</span>
+          </div>
+          <div class="chat">
+            <div class="chat__head" id="chat-head"></div>
+            <div class="chat__log" id="chat-log"></div>
+            <form class="chat__form" id="chat-form" autocomplete="off">
+              <input id="chat-input" placeholder="Ответить клиенту…" aria-label="Сообщение клиенту">
+              <button class="button button-dark button--sm" type="submit">Отправить</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="panel" id="live-cart">
+          <div class="panel__head">
+            <div>
+              <h2>Корзина клиента</h2>
+              <p class="panel__hint">Что сейчас в корзине у клиента. Любая правка появляется здесь сразу.</p>
+            </div>
+            <span class="live" id="live-indicator"><span class="live__dot"></span><span class="live__time">ожидание</span></span>
+          </div>
+          <div id="live-cart-body"></div>
+        </article>
+
+        <article class="panel" id="orders">
+          <div class="panel__head">
+            <div>
+              <h2>Мои сметы</h2>
+              <p class="panel__hint">История корзин, которые вы отправили клиенту.</p>
+            </div>
+          </div>
+          <div class="orders" id="orders-body"></div>
+        </article>
+      </section>
+
+      <aside class="cabinet__side">
+        <article class="panel" id="builder">
+          <div class="panel__title"><h2>Смета для клиента</h2><span class="chip" id="builder-state">черновик</span></div>
+          <div id="builder-body"></div>
+        </article>
+
+        <article class="panel" id="catalog">
+          <div class="panel__title"><h3>Каталог · добавить в смету</h3></div>
+          <input class="input input--sm" id="search-products" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу" style="width:100%;margin-bottom:12px">
+          <div class="mini-catalog" id="mini-catalog"></div>
+        </article>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

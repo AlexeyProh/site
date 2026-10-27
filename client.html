@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кабинет клиента — ОМА</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cabinet.css">
+  <script defer src="js/data.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/client.js"></script>
+</head>
+<body data-page="client">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="cabinet-head">
+      <div>
+        <span class="eyebrow">Версия клиента</span>
+        <h1>Кабинет клиента</h1>
+        <p>Выберите мастера, обсудите проект в чате и получите от него готовую корзину с материалами. Состав можно менять — мастер увидит правки сразу. После оплаты выберите время доставки и приезда мастера.</p>
+      </div>
+      <div class="cabinet-head__side">
+        <div class="who">
+          <b>Анна Смирнова</b>
+          <span id="who-line">+375 29 555-12-34 · Минск</span>
+        </div>
+        <div class="statusbar" id="statusbar"></div>
+      </div>
+    </section>
+
+    <div class="demo-bar">
+      <span><b>Демо:</b> откройте <a href="master.html" target="_blank" rel="noopener">кабинет мастера</a> в соседней вкладке — чат, корзина и оплата синхронизируются между вкладками в реальном времени.</span>
+      <span class="demo-bar__short"><b>Демо:</b> откройте <a href="master.html" target="_blank" rel="noopener">кабинет мастера</a> в соседней вкладке — данные синхронизируются.</span>
+      <button class="link-button" id="demo-reset" type="button">Сбросить демо-данные</button>
+    </div>
+
+    <div class="cabinet">
+      <section class="cabinet__main">
+        <article class="panel" id="chat">
+          <div class="panel__head">
+            <div>
+              <h2>Чат с мастером</h2>
+              <p class="panel__hint" id="chat-hint">Опишите задачу: комнаты, объём работ, сроки. Мастер пришлёт корзину с материалами.</p>
+            </div>
+            <span class="chip" id="chat-chip">мастер не выбран</span>
+          </div>
+          <div class="chat">
+            <div class="chat__head" id="chat-head"></div>
+            <div class="chat__log" id="chat-log"></div>
+            <form class="chat__form" id="chat-form" autocomplete="off">
+              <input id="chat-input" placeholder="Напишите мастеру…" aria-label="Сообщение мастеру">
+              <button class="button button-dark button--sm" type="submit">Отправить</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="panel" id="catalog">
+          <div class="panel__head">
+            <div>
+              <h2>Каталог материалов</h2>
+              <p class="panel__hint">Добавляйте товары сами — или попросите мастера собрать корзину под проект.</p>
+            </div>
+            <input class="input input--sm" id="catalog-search" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу">
+          </div>
+          <div class="chips" id="catalog-filters"></div>
+          <div class="product-grid product-grid--dense" id="client-catalog"></div>
+        </article>
+
+        <article class="panel" id="order">
+          <div class="panel__head">
+            <div>
+              <h2>Заказ и график</h2>
+              <p class="panel__hint">Статусы корзины, оплата, доставка материалов и приезд мастера.</p>
+            </div>
+          </div>
+          <div id="order-body"></div>
+        </article>
+      </section>
+
+      <aside class="cabinet__side">
+        <article class="panel" id="master-panel">
+          <div class="panel__title"><h2>Мой мастер</h2><span class="chip" id="master-state">не выбран</span></div>
+          <div id="master-body"></div>
+        </article>
+
+        <article class="panel" id="cart">
+          <div class="panel__title"><h2>Корзина</h2><span class="chip" id="cart-chip">пусто</span></div>
+          <div id="cart-body"></div>
+        </article>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

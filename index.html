@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ОМА — материалы и мастера в одной корзине</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cabinet.css">
+  <script defer src="js/data.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="catalog">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__content">
+        <span class="eyebrow">ОМА · ремонт без сметных сюрпризов</span>
+        <h1>Материалы и мастер — в одной корзине</h1>
+        <p>Выберите мастера и обсудите проект в чате. Он соберёт корзину с материалами и поделится ею — вы правите состав, платите онлайн и назначаете доставку.</p>
+        <div class="hero-actions">
+          <a class="button button-orange" href="client.html">Я клиент — собрать ремонт</a>
+          <a class="button button-light" href="master.html">Я мастер — вести заказы</a>
+        </div>
+        <ul class="hero__facts">
+          <li><b>12</b>материалов в каталоге</li>
+          <li><b>4</b>мастера с рейтингом</li>
+          <li><b>0</b>скрытых доплат</li>
+        </ul>
+      </div>
+      <div class="hero__visual">
+        <img src="img/logo.png" alt="ОМА">
+        <span>Корзину для клиента собирает мастер — в чате, с пометкой автора</span>
+      </div>
+    </section>
+
+    <section class="feature-row">
+      <a class="feature-card" href="masters.html">
+        <span class="feature-icon">★</span>
+        <div><b>Выбор мастера</b><small>Рейтинг, опыт и отзывы</small></div>
+        <strong>4</strong>
+      </a>
+      <a class="feature-card" href="client.html#chat">
+        <span class="feature-icon">✎</span>
+        <div><b>Чат с мастером</b><small>Обсуждение проекта</small></div>
+        <strong>24/7</strong>
+      </a>
+      <a class="feature-card" href="client.html#cart">
+        <span class="feature-icon">✓</span>
+        <div><b>Корзина от мастера</b><small>Онлайн-правки и оплата</small></div>
+        <strong>в чате</strong>
+      </a>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Каталог</span>
+          <h2>Всё для ремонта</h2>
+          <p id="result-count">Товары в каталоге</p>
+        </div>
+        <div class="controls">
+          <input class="input" id="search" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу">
+          <select class="select" id="sort" aria-label="Сортировка">
+            <option value="popular">Популярные</option>
+            <option value="priceAsc">Сначала дешевле</option>
+            <option value="priceDesc">Сначала дороже</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filters">
+          <h3>Тариф</h3>
+          <div id="budget-filters"></div>
+          <h3>Категория</h3>
+          <div id="category-filters"></div>
+          <h3>Версия сайта</h3>
+          <a class="filter filter--link" href="client.html">Кабинет клиента →</a>
+          <a class="filter filter--link" href="master.html">Кабинет мастера →</a>
+        </aside>
+        <div>
+          <div class="product-grid" id="product-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-band" id="help">
+      <div class="section-heading">
+        <div><span class="eyebrow">Как это работает</span><h2>От выбора мастера до доставки</h2></div>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="step__num">1</span>
+          <h3>Выберите мастера</h3>
+          <p>Смотрите рейтинг, опыт и специализацию — и открывайте с ним чат.</p>
+        </article>
+        <article class="step">
+          <span class="step__num">2</span>
+          <h3>Обсудите проект</h3>
+          <p>Опишите задачу в чате: объём работ, материалы, сроки.</p>
+        </article>
+        <article class="step">
+          <span class="step__num">3</span>
+          <h3>Получите корзину</h3>
+          <p>Мастер собирает смету и делится ею — в чате появится кнопка «Открыть корзину».</p>
+        </article>
+        <article class="step">
+          <span class="step__num">4</span>
+          <h3>Оплатите и выберите время</h3>
+          <p>Правьте состав — мастер видит изменения сразу. После оплаты выберите доставку и приезд мастера.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="roles-band">
+      <a class="role-card role-card--client" href="client.html">
+        <span class="eyebrow">Версия клиента</span>
+        <h2>Кабинет клиента</h2>
+        <p>Каталог, корзина, чат с мастером, оплата и время доставки.</p>
+        <span class="role-card__cta">Открыть →</span>
+      </a>
+      <a class="role-card role-card--master" href="master.html">
+        <span class="eyebrow">Версия мастера</span>
+        <h2>Кабинет мастера PRO</h2>
+        <p>Заявки, чат, сборка сметы и живая корзина клиента.</p>
+        <span class="role-card__cta">Открыть →</span>
+      </a>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
